@@ -22,6 +22,8 @@ GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼�
 
 This repository stores reusable AI Agent skills extracted from real daily workflows.
 
+<img src="assets/features.png" alt="Core skills: necessity, scope, evidence, and verdict" width="100%">
+
 ```text
 输入：反复手工执行的工作流
 输出：可被兼容 Agent 调用的 skill
