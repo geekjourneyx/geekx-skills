@@ -2,7 +2,7 @@
 
 # GeekX Skills
 
-**极客杰尼自用 AI Agent Skills 合集，把高频工作流沉淀成可复用的 Agent 能力。**
+**极客杰尼 AI Agent Skills 合集，把高频工作流沉淀成可复用的 Agent 能力。**
 
 **Personal AI Agent skills by Geekjourneyx, turning repeated workflows into reusable agent capabilities.**
 
