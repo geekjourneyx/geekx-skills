@@ -7,6 +7,7 @@ const version = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8
 const archive = path.join(root, 'dist', `geekx-skills-v${version}.zip`);
 
 const include = [
+  'assets',
   'skills',
   'README.md',
   'LICENSE',
@@ -126,4 +127,3 @@ const end = Buffer.concat([
 await mkdir(path.dirname(archive), { recursive: true });
 await writeFile(archive, Buffer.concat([...localParts, central, end]));
 console.log(path.relative(root, archive));
-
