@@ -2,9 +2,11 @@
 
 # GeekX Skills
 
-**Daily AI Agent skills for agent-compatible coding, creator, and automation workflows.**
+**极客杰尼自用 AI Agent Skills 合集，把高频工作流沉淀成可复用的 Agent 能力。**
 
-<img src="assets/banner.png" alt="GeekX Skills - AI Agent skills collection by geekjourneyx and Geek Jieni" width="100%">
+**Personal AI Agent skills by Geekjourneyx, turning repeated workflows into reusable agent capabilities.**
+
+<img src="assets/banner.png" alt="GeekX Skills - AI Agent skills collection by Geekjourneyx" width="100%">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Agent Skills](https://img.shields.io/badge/Agent-Skills-c96442.svg)](./README.md)
@@ -14,77 +16,56 @@
 
 ---
 
-## What This Is
+## 这是什么 / What This Is
 
-GeekX Skills is a curated collection of AI Agent skills used by [geekjourneyx](https://github.com/geekjourneyx), also known as Geek Jieni, for daily coding, writing, publishing, review, and automation.
+GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的 AI Agent skills 仓库，用来保存真实日常工作中反复使用的 Agent 工作流。
 
-Each skill is designed to turn a repeated workflow into a reusable agent-native routine: clear trigger, clear instructions, optional scripts, and enough context for coding agents to execute reliably.
+This repository stores reusable AI Agent skills extracted from real daily workflows.
 
 ```text
-Input:  a repeated workflow you run by hand
-Output: a reusable AI Agent skill that compatible agents can run
+输入：反复手工执行的工作流
+输出：可被兼容 Agent 调用的 skill
+
+Input:  a repeated manual workflow
+Output: a reusable skill for compatible agents
 ```
 
 ---
 
-## Core Features
+## 可用 Skills / Available Skills
 
-<img src="assets/features.png" alt="GeekX Skills core features: curated daily skills, agent-ready format, cross-agent workflow, creator automation, developer utilities, and personal knowledge loop" width="100%">
-
----
-
-## Available Skills
-
-| Skill | Use when |
+| Skill | 用途 / Use when |
 |:---|:---|
-| `geekx-necessity-gatekeeper` | Reviewing requirements, plans, architecture proposals, MVP scope, roadmap items, or agent outputs that may be over-designed or missing proof of necessity. |
+| `geekx-necessity-gatekeeper` | 审判需求、方案、架构、roadmap 或 Agent 输出是否过度设计；先证明必要性，再允许设计。 / Review requirements, plans, architecture, roadmap items, or agent outputs for overengineering before design begins. |
 
 ---
 
-## Workflow
+## 安装 / Installation
 
-<img src="assets/workflow.png" alt="GeekX Skills workflow: capture, package, install, run, and improve reusable AI Agent skills" width="100%">
-
----
-
-## Installation
-
-Install all skills from this repository:
+安装全部 skills：
 
 ```bash
 npx skills add geekjourneyx/geekx-skills --all
 ```
 
-List available skills before installing:
+查看可用 skills：
 
 ```bash
 npx skills add geekjourneyx/geekx-skills --list
 ```
 
-Install a specific skill. All skills in this repository use the `geekx-` prefix:
+安装单个 skill：
 
 ```bash
 npx skills add geekjourneyx/geekx-skills --skill geekx-<name>
 ```
 
-Install for a specific agent:
-
-```bash
-npx skills add geekjourneyx/geekx-skills --agent <agent-name> --skill geekx-<name>
-```
-
 ---
 
-## Quick Start
-
-After installation, ask your agent to use one of the installed skills by name or by describing the workflow you want to run.
+## 使用示例 / Usage
 
 ```text
-Use geekx-necessity-gatekeeper to review this plan for overengineering.
-```
-
-```text
-Use geekx-necessity-gatekeeper court mode to judge whether this roadmap item should be kept, cut, deferred, validated first, or shrunk.
+使用 geekx-necessity-gatekeeper 审查这个方案是否过度设计。
 ```
 
 ```text
@@ -93,49 +74,58 @@ Use geekx-necessity-gatekeeper to find the smallest necessary upgrade.
 
 ---
 
-## Repository Structure
+## 命名规则 / Naming Rule
+
+所有 skill 都必须使用 `geekx-` 前缀。
+
+All skills in this repository must use the `geekx-` prefix.
+
+```text
+skills/geekx-<name>/SKILL.md
+```
+
+不要添加 `review`、`writer`、`scope-review` 这类泛名；使用 `geekx-review`、`geekx-writer`、`geekx-scope-review`。
+
+Do not add generic skill names such as `review`, `writer`, or `scope-review`.
+
+---
+
+## 仓库结构 / Repository Structure
 
 ```text
 geekx-skills/
-  skills/                 reusable AI Agent skills
+  skills/
     geekx-<name>/
-      SKILL.md            trigger rules and execution instructions
-      scripts/            optional local helpers
-      references/         optional reusable context
-  assets/                 README images and project media
-  scripts/                repository maintenance scripts
+      SKILL.md
+      evals/evals.json
+      scripts/
+      references/
+  assets/
+  scripts/
 ```
-
-Each skill should be self-contained. If a skill needs scripts, templates, or reference material, keep them inside that skill folder so agents can load only the context they need.
 
 ---
 
-## Naming Rule
+## 维护规则 / Maintenance
 
-Every skill in this repository must use the `geekx-` prefix.
-
-```text
-geekx-readme-generator
-geekx-scope-review
-geekx-md2wechat
-geekx-content-polish
-```
-
-This keeps the collection recognizable across installers, marketplaces, search results, and copied skill folders. Do not add generic names like `review`, `writer`, or `scope-review` here; use `geekx-review`, `geekx-writer`, or `geekx-scope-review`.
+- 新增或修改 skill 必须同步添加 eval prompts。
+- 发布前必须执行 `npm run check:release`。
+- 发布包由 `npm run pack:skills` 生成。
+- 版本从 `1.0.0` 开始，tag 必须与 `package.json` 一致。
 
 ---
 
-## Author
+## 作者 / Author
 
 | | |
 |:---|:---|
-| Homepage | [jieni.ai](https://jieni.ai) |
+| 个人主页 / Homepage | [jieni.ai](https://jieni.ai) |
 | GitHub | [geekjourneyx](https://github.com/geekjourneyx) |
 | X / Twitter | [@seekjourney](https://x.com/seekjourney) |
-| WeChat | Search for `极客杰尼` |
+| 公众号 / WeChat | 搜索「极客杰尼」 |
 
 ---
 
 ## License
 
-[MIT](./LICENSE) - free to use, modify, and distribute.
+[MIT](./LICENSE)

@@ -133,7 +133,7 @@ const features = page(`
       <div class="feature card"><span class="num">03</span><h3>Cross-Agent Workflow</h3><p>Designed for Codex, Claude Code, OpenClaw, and other skill-compatible agent tools.</p></div>
       <div class="feature card"><span class="num">04</span><h3>Creator Automation</h3><p>Reusable workflows for content research, drafting, design cards, publishing, and review gates.</p></div>
       <div class="feature card"><span class="num">05</span><h3>Developer Utilities</h3><p>Engineering workflows for reviews, debugging, release checks, README generation, and project hygiene.</p></div>
-      <div class="feature card"><span class="num">06</span><h3>Personal Knowledge Loop</h3><p>Skills that encode how Geek Jieni works, making tacit process visible and reusable.</p></div>
+      <div class="feature card"><span class="num">06</span><h3>Personal Knowledge Loop</h3><p>Skills that encode how Geekjourneyx works, making tacit process visible and reusable.</p></div>
     </section>
   </main>
 `, `
