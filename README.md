@@ -139,28 +139,3 @@ This keeps the collection recognizable across installers, marketplaces, search r
 ## License
 
 [MIT](./LICENSE) - free to use, modify, and distribute.
-
----
-
-## GitHub Metadata
-
-Suggested repository description:
-
-```text
-AI Agent skills collection by geekjourneyx / Geek Jieni for agent-compatible coding, creator, and automation workflows
-```
-
-Suggested topics:
-
-```text
-ai-agents
-agent-skills
-codex
-claude-code
-openclaw
-automation
-developer-tools
-creator-tools
-geekjourneyx
-jieni
-```
