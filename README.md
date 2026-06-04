@@ -2,7 +2,7 @@
 
 # GeekX 技能集
 
-**极客杰尼智能体技能合集，把高频工作流沉淀成可复用能力。**
+**极客杰尼 Agent Skills 合集，把高频工作流沉淀成可复用能力。**
 
 <img src="assets/banner.png" alt="GeekX 技能集横幅" width="100%">
 
@@ -12,14 +12,9 @@
 
 ## 这是什么
 
-GeekX 技能集是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的智能体技能仓库，用来保存真实日常工作中反复使用的工作流。
+GeekX 技能集是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的 Agent Skills 合集，用来保存真实日常工作中反复使用的工作流。
 
 <img src="assets/features.png" alt="核心能力：必要性、范围、证据和裁决" width="100%">
-
-```text
-输入：反复手工执行的工作流
-输出：可被支持技能机制的智能体调用的技能
-```
 
 ---
 
