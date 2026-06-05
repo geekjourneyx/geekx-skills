@@ -106,7 +106,7 @@ for (const dir of skillDirs) {
   }
 }
 
-if (!/^## .*可用技能/m.test(readme)) error('README.md missing 可用技能 section');
+if (!/^## .*Available Skills/m.test(readme)) error('README.md missing Available Skills section');
 for (const dir of skillDirs) {
   if (dir.startsWith('geekx-') && !readme.includes(`\`${dir}\``)) {
     error(`README.md does not list ${dir}`);
