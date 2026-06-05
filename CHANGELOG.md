@@ -4,6 +4,10 @@
 
 ## [未发布]
 
+## [2.0.2] - 2026-06-05
+
+- 优化 README 叙事，并将 README 信息图收敛为两张中文 WebP 资产。
+
 ## [2.0.1] - 2026-06-05
 
 - 将 `geekx-necessity-gatekeeper` 改名为 `geekx-gate`。

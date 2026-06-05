@@ -1,20 +1,22 @@
 import { mkdir, writeFile, rm } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const outDir = new URL('../assets/', import.meta.url);
 const tmpDir = new URL('../.tmp-readme-assets/', import.meta.url);
+const run = promisify(execFile);
 
-const tokens = {
-  project: 'GeekX 技能集',
-  tagline: '把高频工作流沉淀成可复用的智能体能力',
-  primary: '#c96442',
-  amber: '#d8942f',
-  bg: '#fbf6ee',
-  panel: '#fffaf2',
-  ink: '#221b16',
-  muted: '#6f6257',
-  line: '#ead8c7',
+const palette = {
+  bg: '#050505',
+  panel: 'rgba(18, 18, 17, 0.84)',
+  panelStrong: 'rgba(30, 28, 23, 0.92)',
+  ink: '#f7f3ea',
+  muted: '#a9a29a',
+  line: 'rgba(222, 186, 98, 0.28)',
+  gold: '#d8ae55',
+  goldSoft: '#8e6d2f',
 };
 
 const baseStyle = `
@@ -22,45 +24,63 @@ const baseStyle = `
   html, body { margin: 0; width: 1920px; height: 1080px; }
   body {
     background:
-      radial-gradient(circle at 85% 18%, rgba(201, 100, 66, 0.13), transparent 28%),
-      linear-gradient(135deg, ${tokens.bg} 0%, #fffaf2 52%, #f4e6d4 100%);
-    color: ${tokens.ink};
-    font-family: ui-serif, Georgia, "Times New Roman", "Noto Serif SC", serif;
+      radial-gradient(circle at 74% 22%, rgba(216, 174, 85, 0.16), transparent 27%),
+      radial-gradient(circle at 18% 84%, rgba(142, 109, 47, 0.16), transparent 28%),
+      linear-gradient(145deg, #050505 0%, #0b0a09 46%, #050505 100%);
+    color: ${palette.ink};
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
     overflow: hidden;
   }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, transparent 46%, rgba(0,0,0,0.54) 100%);
+  }
   .frame {
+    position: relative;
+    z-index: 1;
     width: 1920px;
     height: 1080px;
-    padding: 86px 96px;
-    position: relative;
+    padding: 92px 108px;
   }
   .kicker {
-    color: ${tokens.primary};
-    font: 700 29px/1.2 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: ${palette.gold};
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 800;
     letter-spacing: 0;
-    text-transform: uppercase;
   }
-  h1, h2 {
-    margin: 18px 0 0;
-    letter-spacing: 0;
-    font-weight: 760;
-  }
-  h1 { font-size: 118px; line-height: 1.02; max-width: 1050px; }
-  h2 { font-size: 82px; line-height: 1.05; max-width: 1040px; }
-  .subtitle {
+  h1, h2, h3, p { margin: 0; letter-spacing: 0; }
+  .rule {
+    width: 128px;
+    height: 5px;
     margin-top: 30px;
-    max-width: 960px;
-    color: ${tokens.muted};
-    font: 34px/1.45 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+    background: linear-gradient(90deg, ${palette.gold}, transparent);
   }
   .card {
-    background: rgba(255, 250, 242, 0.82);
-    border: 2px solid ${tokens.line};
-    box-shadow: 0 24px 70px rgba(87, 55, 32, 0.11);
+    border: 1px solid ${palette.line};
+    background: ${palette.panel};
+    box-shadow: 0 24px 120px rgba(0, 0, 0, 0.46);
+    backdrop-filter: blur(18px);
   }
   .num {
-    color: ${tokens.primary};
-    font: 800 30px/1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: ${palette.gold};
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 900;
   }
 `;
 
@@ -78,131 +98,168 @@ function page(body, extraStyle = '') {
 
 const banner = page(`
   <main class="frame banner">
-    <section>
-      <div class="kicker">智能体技能合集</div>
-      <h1>${tokens.project}</h1>
-      <p class="subtitle">${tokens.tagline}</p>
-      <div class="meta">
-        <span>by geekjourneyx / 极客杰尼</span>
-        <span>jieni.ai</span>
-        <span>2026</span>
+    <section class="copy">
+      <div class="kicker">Skills 合集 for Agents</div>
+      <h1>GeekX Skills</h1>
+      <p class="tagline">给 Agent 使用的 Skills 合集</p>
+      <div class="rule"></div>
+      <div class="chips">
+        <span>必要性闸门</span>
+        <span>承诺闸门</span>
+        <span>反过度设计</span>
       </div>
     </section>
-    <aside class="stack">
-      <div class="tech card"><span class="num">01</span><strong>必要性</strong><p>先证明这件事现在该做，再进入设计。</p></div>
-      <div class="tech card"><span class="num">02</span><strong>承诺闸门</strong><p>拦住过早重写、框架选择和难撤回技术决定。</p></div>
-      <div class="tech card"><span class="num">03</span><strong>受限法庭</strong><p>用多线程证据收集审判高风险范围决策。</p></div>
-    </aside>
+    <section class="gate" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="pillar left"></div>
+      <div class="pillar right"></div>
+      <div class="threshold"></div>
+      <div class="beam"></div>
+    </section>
   </main>
 `, `
-  .banner { display: grid; grid-template-columns: 1fr 610px; gap: 82px; align-items: center; }
-  .meta {
+  .banner {
+    display: grid;
+    grid-template-columns: 0.96fr 1.04fr;
+    align-items: center;
+    gap: 84px;
+  }
+  .copy { transform: translateY(-8px); }
+  h1 {
+    margin-top: 34px;
+    font-size: 134px;
+    line-height: 0.94;
+    font-weight: 880;
+  }
+  .tagline {
+    margin-top: 34px;
+    max-width: 700px;
+    color: ${palette.muted};
+    font-size: 44px;
+    line-height: 1.28;
+    font-weight: 650;
+  }
+  .chips {
+    margin-top: 58px;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 58px;
-    font: 700 25px/1.1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    color: ${tokens.ink};
+    gap: 18px;
   }
-  .meta span {
-    border: 2px solid ${tokens.line};
-    background: rgba(255, 250, 242, 0.72);
+  .chips span {
+    border: 1px solid ${palette.line};
+    background: rgba(216, 174, 85, 0.08);
+    color: ${palette.ink};
     padding: 18px 24px;
+    font-size: 27px;
+    line-height: 1;
+    font-weight: 760;
   }
-  .stack { display: grid; gap: 24px; }
-  .tech { padding: 36px 38px; border-radius: 28px; }
-  .tech strong {
-    display: block;
-    margin-top: 18px;
-    font: 760 39px/1.1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  .gate {
+    position: relative;
+    height: 760px;
   }
-  .tech p {
-    margin: 14px 0 0;
-    color: ${tokens.muted};
-    font: 27px/1.38 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  .halo {
+    position: absolute;
+    inset: 64px 92px 92px;
+    border: 1px solid rgba(216, 174, 85, 0.26);
+    box-shadow: inset 0 0 120px rgba(216, 174, 85, 0.08), 0 0 160px rgba(216, 174, 85, 0.12);
+  }
+  .pillar {
+    position: absolute;
+    top: 92px;
+    width: 118px;
+    height: 560px;
+    background: linear-gradient(180deg, rgba(235,217,171,0.82), rgba(102,78,36,0.24));
+    border: 1px solid rgba(250, 226, 166, 0.36);
+    box-shadow: 0 0 70px rgba(216, 174, 85, 0.22);
+  }
+  .pillar.left { left: 238px; }
+  .pillar.right { right: 238px; }
+  .threshold {
+    position: absolute;
+    left: 140px;
+    right: 140px;
+    bottom: 116px;
+    height: 56px;
+    background: linear-gradient(90deg, transparent, rgba(216,174,85,0.76), transparent);
+    filter: blur(0.2px);
+  }
+  .beam {
+    position: absolute;
+    left: 50%;
+    top: 126px;
+    width: 250px;
+    height: 526px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, rgba(250,226,166,0.24), rgba(216,174,85,0.04));
+    clip-path: polygon(26% 0, 74% 0, 100% 100%, 0 100%);
   }
 `);
 
 const features = page(`
-  <main class="frame">
-    <div class="kicker">核心能力</div>
-    <h2>把重复工作变成智能体可执行的流程。</h2>
+  <main class="frame features">
+    <header>
+      <div class="kicker">一个 Skill，先做审判，再谈方案</div>
+      <h2>让 Agent 先判断：该不该做。</h2>
+      <div class="rule"></div>
+    </header>
     <section class="grid">
-      <div class="feature card"><span class="num">01</span><h3>必要性门禁</h3><p>没有真实痛点和不做后果，就不进入方案设计。</p></div>
-      <div class="feature card"><span class="num">02</span><h3>噪音检测</h3><p>识别未来假设、镀金、顺手添加和平台化冲动。</p></div>
-      <div class="feature card"><span class="num">03</span><h3>单一职责</h3><p>防止需求、模块和流程变成万能工具箱。</p></div>
-      <div class="feature card"><span class="num">04</span><h3>复杂度税</h3><p>把维护、测试、迁移、支持和认知成本算清楚。</p></div>
-      <div class="feature card"><span class="num">05</span><h3>承诺闸门</h3><p>用 STOP、HOLD、PROBE 控制难撤回技术决定。</p></div>
-      <div class="feature card"><span class="num">06</span><h3>最终指令</h3><p>输出一个裁决和一个下一步，不输出大而全方案。</p></div>
+      <article class="card feature strong">
+        <span class="num">01</span>
+        <h3>必要性门禁</h3>
+        <p>没有真实痛点、重复失败和不做后果，就不进入方案设计。</p>
+      </article>
+      <article class="card feature">
+        <span class="num">02</span>
+        <h3>噪音检测</h3>
+        <p>砍掉未来假设、镀金、顺手添加和平台化冲动。</p>
+      </article>
+      <article class="card feature">
+        <span class="num">03</span>
+        <h3>复杂度税</h3>
+        <p>把维护、测试、迁移、支持和认知成本提前算清楚。</p>
+      </article>
+      <article class="card feature">
+        <span class="num">04</span>
+        <h3>承诺闸门</h3>
+        <p>用 STOP、HOLD、PROBE 控制重写、框架和工作流引擎。</p>
+      </article>
     </section>
   </main>
 `, `
-  h2 { max-width: 1260px; font-size: 72px; }
+  .features header { max-width: 1320px; }
+  h2 {
+    margin-top: 30px;
+    font-size: 82px;
+    line-height: 1.08;
+    font-weight: 860;
+  }
   .grid {
-    margin-top: 58px;
+    margin-top: 70px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.08fr 0.92fr;
     gap: 24px;
   }
-  .feature { min-height: 250px; padding: 30px 32px; border-radius: 24px; }
+  .feature {
+    min-height: 240px;
+    padding: 34px 38px;
+  }
+  .feature.strong {
+    background: ${palette.panelStrong};
+    border-color: rgba(216, 174, 85, 0.48);
+  }
   .feature h3 {
-    margin: 20px 0 0;
-    font: 760 35px/1.12 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    letter-spacing: 0;
+    margin-top: 24px;
+    font-size: 46px;
+    line-height: 1.1;
+    font-weight: 860;
   }
   .feature p {
-    margin: 16px 0 0;
-    color: ${tokens.muted};
-    font: 25px/1.34 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-`);
-
-const workflow = page(`
-  <main class="frame">
-    <div class="kicker">工作流</div>
-    <h2>从想法到裁决，只保留最小必要动作。</h2>
-    <section class="flow">
-      <div class="stage card"><span>步骤 01</span><h3>确认问题</h3><p>先说清现在到底解决什么。</p></div>
-      <div class="line"></div>
-      <div class="stage card"><span>步骤 02</span><h3>砍掉噪音</h3><p>删除未来假设、镀金和无证据范围。</p></div>
-      <div class="line"></div>
-      <div class="stage card"><span>步骤 03</span><h3>计算成本</h3><p>列出长期复杂度税和维护责任。</p></div>
-      <div class="line"></div>
-      <div class="stage card"><span>步骤 04</span><h3>检查承诺</h3><p>判断是否存在难撤回技术决定。</p></div>
-      <div class="line"></div>
-      <div class="stage card"><span>步骤 05</span><h3>给出裁决</h3><p>只给一个最终指令和停止条件。</p></div>
-    </section>
-  </main>
-`, `
-  h2 { font-size: 86px; }
-  .flow {
-    margin-top: 82px;
-    display: grid;
-    grid-template-columns: 1fr 54px 1fr 54px 1fr 54px 1fr 54px 1fr;
-    align-items: stretch;
-  }
-  .stage {
-    min-height: 410px;
-    padding: 36px 28px;
-    border-radius: 26px;
-  }
-  .stage span {
-    color: ${tokens.primary};
-    font: 800 25px/1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  .stage h3 {
-    margin: 38px 0 0;
-    font: 760 43px/1.06 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  .stage p {
-    margin: 22px 0 0;
-    color: ${tokens.muted};
-    font: 27px/1.36 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
-  .line {
-    align-self: center;
-    height: 3px;
-    background: linear-gradient(90deg, ${tokens.primary}, ${tokens.amber});
+    margin-top: 20px;
+    color: ${palette.muted};
+    font-size: 30px;
+    line-height: 1.34;
+    font-weight: 560;
   }
 `);
 
@@ -216,6 +273,19 @@ async function screenshot(browser, name, html) {
   await page.close();
 }
 
+async function convertWebp(name) {
+  const pngPath = new URL(`${name}.png`, outDir);
+  const webpPath = new URL(`${name}.webp`, outDir);
+  await run('convert', [
+    fileURLToPath(pngPath),
+    '-strip',
+    '-quality',
+    '82',
+    fileURLToPath(webpPath),
+  ]);
+  await rm(pngPath, { force: true });
+}
+
 await mkdir(outDir, { recursive: true });
 await mkdir(tmpDir, { recursive: true });
 
@@ -223,8 +293,10 @@ const browser = await chromium.launch({ headless: true });
 try {
   await screenshot(browser, 'banner', banner);
   await screenshot(browser, 'features', features);
-  await screenshot(browser, 'workflow', workflow);
 } finally {
   await browser.close();
   await rm(tmpDir, { recursive: true, force: true });
 }
+
+await convertWebp('banner');
+await convertWebp('features');

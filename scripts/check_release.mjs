@@ -120,7 +120,7 @@ for (const dir of skillDirs) {
   }
 }
 
-if (!/^## .*可用技能/m.test(readme)) error('README.md missing 可用技能 section');
+if (!/^## .*可用 Skills/m.test(readme)) error('README.md missing 可用 Skills section');
 if (!/^## .*文档防漂移规则/m.test(agents)) error('AGENTS.md missing 文档防漂移规则 section');
 if (!/^## .*发布流程/m.test(agents)) error('AGENTS.md missing 发布流程 section');
 for (const dir of skillDirs) {
