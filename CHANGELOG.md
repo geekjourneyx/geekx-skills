@@ -1,9 +1,18 @@
-# Changelog
+# 更新日志
 
-All notable changes to GeekX Skills are documented here.
+这里记录 GeekX 技能集的重要变更。
+
+## [未发布]
+
+## [2.0.1] - 2026-06-05
+
+- 将 `geekx-necessity-gatekeeper` 改名为 `geekx-gate`。
+- 中文化 README 和 `SKILL.md`。
+- 将承诺闸门能力融合进 `geekx-gate`。
+- 校准 README 与 AGENTS 文档职责，增加防漂移发布检查。
 
 ## [1.0.0] - 2026-05-29
 
-- Added `geekx-necessity-gatekeeper`.
-- Added README assets and project metadata.
-- Added release checks, packaging workflow, and repository agent instructions.
+- 添加 `geekx-necessity-gatekeeper` 必要性闸门。
+- 添加 README 资产和项目元数据。
+- 添加发布检查、打包流程和仓库智能体说明。

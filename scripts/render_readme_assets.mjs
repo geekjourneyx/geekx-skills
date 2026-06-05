@@ -6,8 +6,8 @@ const outDir = new URL('../assets/', import.meta.url);
 const tmpDir = new URL('../.tmp-readme-assets/', import.meta.url);
 
 const tokens = {
-  project: 'GeekX Skills',
-  tagline: 'Daily AI Agent skills for Codex, Claude Code, OpenClaw, and automation workflows',
+  project: 'GeekX 技能集',
+  tagline: '把高频工作流沉淀成可复用的智能体能力',
   primary: '#c96442',
   amber: '#d8942f',
   bg: '#fbf6ee',
@@ -66,7 +66,7 @@ const baseStyle = `
 
 function page(body, extraStyle = '') {
   return `<!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1920,height=1080,initial-scale=1">
@@ -79,7 +79,7 @@ function page(body, extraStyle = '') {
 const banner = page(`
   <main class="frame banner">
     <section>
-      <div class="kicker">AI Agent Skills Collection</div>
+      <div class="kicker">智能体技能合集</div>
       <h1>${tokens.project}</h1>
       <p class="subtitle">${tokens.tagline}</p>
       <div class="meta">
@@ -89,9 +89,9 @@ const banner = page(`
       </div>
     </section>
     <aside class="stack">
-      <div class="tech card"><span class="num">01</span><strong>Codex</strong><p>Reusable agent workflows for coding and automation</p></div>
-      <div class="tech card"><span class="num">02</span><strong>Claude Code</strong><p>Skill folders with clear triggers, scripts, and usage rules</p></div>
-      <div class="tech card"><span class="num">03</span><strong>OpenClaw</strong><p>Portable skills for daily creator and developer operations</p></div>
+      <div class="tech card"><span class="num">01</span><strong>必要性</strong><p>先证明这件事现在该做，再进入设计。</p></div>
+      <div class="tech card"><span class="num">02</span><strong>承诺闸门</strong><p>拦住过早重写、框架选择和难撤回技术决定。</p></div>
+      <div class="tech card"><span class="num">03</span><strong>受限法庭</strong><p>用多线程证据收集审判高风险范围决策。</p></div>
     </aside>
   </main>
 `, `
@@ -125,15 +125,15 @@ const banner = page(`
 
 const features = page(`
   <main class="frame">
-    <div class="kicker">Core Features</div>
-    <h2>Skills that turn repeated work into agent-native routines.</h2>
+    <div class="kicker">核心能力</div>
+    <h2>把重复工作变成智能体可执行的流程。</h2>
     <section class="grid">
-      <div class="feature card"><span class="num">01</span><h3>Curated Daily Skills</h3><p>A practical collection of skills actually used in coding, writing, publishing, and operations.</p></div>
-      <div class="feature card"><span class="num">02</span><h3>Agent-Ready Format</h3><p>Each skill is packaged with clear triggers, instructions, scripts, and reusable context.</p></div>
-      <div class="feature card"><span class="num">03</span><h3>Cross-Agent Workflow</h3><p>Designed for Codex, Claude Code, OpenClaw, and other skill-compatible agent tools.</p></div>
-      <div class="feature card"><span class="num">04</span><h3>Creator Automation</h3><p>Reusable workflows for content research, drafting, design cards, publishing, and review gates.</p></div>
-      <div class="feature card"><span class="num">05</span><h3>Developer Utilities</h3><p>Engineering workflows for reviews, debugging, release checks, README generation, and project hygiene.</p></div>
-      <div class="feature card"><span class="num">06</span><h3>Personal Knowledge Loop</h3><p>Skills that encode how Geekjourneyx works, making tacit process visible and reusable.</p></div>
+      <div class="feature card"><span class="num">01</span><h3>必要性门禁</h3><p>没有真实痛点和不做后果，就不进入方案设计。</p></div>
+      <div class="feature card"><span class="num">02</span><h3>噪音检测</h3><p>识别未来假设、镀金、顺手添加和平台化冲动。</p></div>
+      <div class="feature card"><span class="num">03</span><h3>单一职责</h3><p>防止需求、模块和流程变成万能工具箱。</p></div>
+      <div class="feature card"><span class="num">04</span><h3>复杂度税</h3><p>把维护、测试、迁移、支持和认知成本算清楚。</p></div>
+      <div class="feature card"><span class="num">05</span><h3>承诺闸门</h3><p>用 STOP、HOLD、PROBE 控制难撤回技术决定。</p></div>
+      <div class="feature card"><span class="num">06</span><h3>最终指令</h3><p>输出一个裁决和一个下一步，不输出大而全方案。</p></div>
     </section>
   </main>
 `, `
@@ -159,18 +159,18 @@ const features = page(`
 
 const workflow = page(`
   <main class="frame">
-    <div class="kicker">Workflow</div>
-    <h2>From repeated task to reusable skill.</h2>
+    <div class="kicker">工作流</div>
+    <h2>从想法到裁决，只保留最小必要动作。</h2>
     <section class="flow">
-      <div class="stage card"><span>STEP 01</span><h3>Capture</h3><p>Find a repeated workflow worth encoding.</p></div>
+      <div class="stage card"><span>步骤 01</span><h3>确认问题</h3><p>先说清现在到底解决什么。</p></div>
       <div class="line"></div>
-      <div class="stage card"><span>STEP 02</span><h3>Package</h3><p>Write triggers, rules, scripts, and examples.</p></div>
+      <div class="stage card"><span>步骤 02</span><h3>砍掉噪音</h3><p>删除未来假设、镀金和无证据范围。</p></div>
       <div class="line"></div>
-      <div class="stage card"><span>STEP 03</span><h3>Install</h3><p>Add skills to Codex, Claude Code, or OpenClaw.</p></div>
+      <div class="stage card"><span>步骤 03</span><h3>计算成本</h3><p>列出长期复杂度税和维护责任。</p></div>
       <div class="line"></div>
-      <div class="stage card"><span>STEP 04</span><h3>Run</h3><p>Let agents execute the workflow in real projects.</p></div>
+      <div class="stage card"><span>步骤 04</span><h3>检查承诺</h3><p>判断是否存在难撤回技术决定。</p></div>
       <div class="line"></div>
-      <div class="stage card"><span>STEP 05</span><h3>Improve</h3><p>Refine the skill when real usage exposes gaps.</p></div>
+      <div class="stage card"><span>步骤 05</span><h3>给出裁决</h3><p>只给一个最终指令和停止条件。</p></div>
     </section>
   </main>
 `, `

@@ -1,8 +1,8 @@
 {
   "name": "geekx-skills",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "private": true,
-  "description": "AI Agent skills collection by Geekjourneyx",
+  "description": "极客杰尼智能体技能合集",
   "type": "module",
   "scripts": {
     "assets:readme": "node scripts/render_readme_assets.mjs",

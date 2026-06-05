@@ -21,6 +21,7 @@ const pkg = await readJson('package.json');
 const lock = await readJson('package-lock.json');
 const changelog = await readText('CHANGELOG.md');
 const readme = await readText('README.md');
+const agents = await readText('AGENTS.md');
 
 if (!pkg.version) error('package.json missing version');
 if (lock.version !== pkg.version) {
@@ -54,10 +55,23 @@ const runtimeRedFlags = [
 for (const [file, text] of [
   ['README.md', readme],
   ['CHANGELOG.md', changelog],
+  ['AGENTS.md', agents],
 ]) {
   for (const pattern of runtimeRedFlags) {
     if (pattern.test(text)) error(`${file} contains runtime-specific red flag: ${pattern}`);
   }
+}
+
+const readmeMaintenanceRedFlags = [
+  /npm run check:release/,
+  /npm run pack:skills/,
+  /git tag\b/,
+  /git push origin/,
+  /GitHub release workflow/,
+];
+
+for (const pattern of readmeMaintenanceRedFlags) {
+  if (pattern.test(readme)) error(`README.md contains maintenance-only instruction: ${pattern}`);
 }
 
 if (!existsSync(path.join(root, 'skills'))) error('skills/ directory is missing');
@@ -106,7 +120,9 @@ for (const dir of skillDirs) {
   }
 }
 
-if (!/^## .*Available Skills/m.test(readme)) error('README.md missing Available Skills section');
+if (!/^## .*可用技能/m.test(readme)) error('README.md missing 可用技能 section');
+if (!/^## .*文档防漂移规则/m.test(agents)) error('AGENTS.md missing 文档防漂移规则 section');
+if (!/^## .*发布流程/m.test(agents)) error('AGENTS.md missing 发布流程 section');
 for (const dir of skillDirs) {
   if (dir.startsWith('geekx-') && !readme.includes(`\`${dir}\``)) {
     error(`README.md does not list ${dir}`);

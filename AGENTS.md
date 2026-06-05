@@ -1,73 +1,82 @@
-# Agent Instructions
+# 智能体指令
 
-## Scope
+## 适用范围
 
-These instructions apply to the entire repository.
+这些指令适用于整个仓库。
 
-## Repository Rules
+## 仓库规则
 
-- Every skill directory under `skills/` must start with `geekx-`.
-- Each skill directory must contain `SKILL.md`.
-- The `name` field in each `SKILL.md` must match its directory name.
-- Each skill must include evaluation prompts under `skills/<skill-name>/evals/evals.json`.
-- Keep skill files focused. Add references or scripts only when they remove repeated work.
-- Do not add runtime-specific wording unless the skill is explicitly runtime-specific.
-- Do not add generic skill names such as `review`, `writer`, or `scope-review`.
+- `skills/` 下的每个技能目录都必须以 `geekx-` 开头。
+- 每个技能目录都必须包含 `SKILL.md`。
+- 每个 `SKILL.md` 的 `name` 字段必须与目录名一致。
+- 每个技能都必须包含 `skills/<skill-name>/evals/evals.json`。
+- 技能文件必须聚焦。只有当 `references/` 或 `scripts/` 能减少重复工作时才添加。
+- 除非技能本身明确绑定某个运行时，否则不要加入运行时专属措辞。
+- 不要添加 `review`、`writer`、`scope-review` 这类泛名。
 
-## Skill Creation Rules
+## 技能创建规则
 
-Use the `skill-creator` workflow for every new or modified skill:
+每次新增或修改技能，都必须使用 `skill-creator` 工作流：
 
-1. Capture the skill intent, trigger conditions, expected output, and success criteria.
-2. Write the smallest useful `SKILL.md`.
-3. Add realistic eval prompts before considering the skill done.
-4. Make eval expectations checkable where possible.
-5. Keep the skill body concise; move heavy reference material into `references/`.
-6. Update README `Available Skills` when adding or renaming a skill.
+1. 明确技能意图、触发条件、预期输出和成功标准。
+2. 写出最小可用的 `SKILL.md`。
+3. 在认为技能完成前，添加真实可用的评测提示。
+4. 尽量让评测预期可检查。
+5. 保持技能正文简洁，把厚重材料移到 `references/`。
+6. 新增、删除或改名技能时，同步更新 README 的「可用技能」表格。
 
-Do not merge a skill that lacks eval prompts.
+缺少评测提示的技能不能合并。
 
-## Darwin Review Rules
+## Darwin 审查规则
 
-Use the `darwin-skill` review discipline before releases and after meaningful skill edits:
+发布前，以及每次有实质性技能改动后，都必须使用 `darwin-skill` 审查纪律：
 
-1. Run a runtime-neutrality scan.
-2. Score the skill for frontmatter, workflow clarity, failure modes, checkpoints, specificity, resource integration, architecture, real-output risk, and anti-pattern coverage.
-3. Fix P0 runtime drift before any other improvement.
-4. Prefer one improvement dimension per edit.
-5. Add explicit failure branches when the skill can be pulled off course.
-6. Keep or revert based on validation, not taste.
-7. Stop when the next edit only adds words without improving behavior.
+1. 执行运行时中立性扫描。
+2. 从 frontmatter、工作流清晰度、失败分支、检查点、具体性、资源集成、架构、真实输出风险、反模式覆盖等维度评分。
+3. 先修复 P0 级运行时漂移，再做其他优化。
+4. 每次编辑优先只改进一个维度。
+5. 当技能可能被拉偏时，添加明确失败分支。
+6. 根据验证结果保留或回滚，不根据个人偏好判断。
+7. 当下一次编辑只是在加字、没有改善行为时停止。
 
-## Documentation Rules
+## 文档规则
 
-- Keep README and skill docs concise.
-- Delete generic claims, filler, and self-commentary.
-- Prefer executable commands and hard constraints over explanation.
-- Keep version references consistent with `package.json`.
-- Update `CHANGELOG.md` for every release.
-- Keep release instructions in `AGENTS.md`; keep README focused on users.
+- README 和技能文档必须简洁。
+- 删除泛泛而谈的宣传、填充语和自我解释。
+- 优先写可执行命令和硬约束，少写解释。
+- 版本号以 `package.json` 为唯一来源。
+- 每次发布都必须更新 `CHANGELOG.md`。
+- 发布流程只放在 `AGENTS.md`，README 只面向使用者。
 
-## Release Process
+## 文档防漂移规则
 
-Run this process every time before publishing:
+- README 的「可用技能」表格必须与 `skills/` 目录一致。
+- README 不要写死当前版本号、发布步骤、标签命令或内部审查流程。
+- AGENTS 是维护者规则的唯一入口；不要把同一条发布规则复制到 README。
+- `CHANGELOG.md` 只记录真实历史变更，不为了“当前命名”改写旧版本事实。
+- 改名技能时，必须同时更新目录名、`SKILL.md` 的 `name`、`evals/evals.json` 的 `skill_name`、README 表格和变更日志。
+- 每次文档或技能改动后，至少运行 `npm run check:release`。
 
-1. Update `package.json` version.
-2. Update `package-lock.json` with the same version.
-3. Add a matching `## [x.y.z] - YYYY-MM-DD` entry to `CHANGELOG.md`.
-4. Run `npm run check:release`.
-5. Run `npm run pack:skills`.
-6. Commit the release changes.
-7. Tag the release: `git tag -a vx.y.z -m "vx.y.z"`.
-8. Push the branch and tag: `git push origin <branch>` then `git push origin vx.y.z`.
-9. Confirm the GitHub release workflow uploaded the zip artifact.
+## 发布流程
 
-Do not tag a release if `npm run check:release` fails.
+每次发布前都必须执行以下流程：
 
-## Tooling Language Rule
+1. 更新 `package.json` 版本号。
+2. 用同一个版本号更新 `package-lock.json`。
+3. 在 `CHANGELOG.md` 添加匹配的 `## [x.y.z] - YYYY-MM-DD` 条目。
+4. 运行 `npm run check:release`。
+5. 运行 `npm run pack:skills`。
+6. 提交发布改动。
+7. 创建发布标签：`git tag -a vx.y.z -m "vx.y.z"`。
+8. 推送分支和标签：先 `git push origin <branch>`，再 `git push origin vx.y.z`。
+9. 确认 GitHub release workflow 已上传 zip 产物。
 
-- This is a skills repository, not a Node application. Node is used only for repository tooling.
-- Use `.mjs` for release checks, JSON/frontmatter parsing, version validation, and packaging.
-- Use shell only for thin command orchestration when no structured parsing is needed.
-- Do not depend on system-only tools such as `zip` for the release artifact.
-- Do not introduce TypeScript until the repository has a TypeScript build/test path.
+如果 `npm run check:release` 失败，不要创建发布标签。
+
+## 工具语言规则
+
+- 这是技能仓库，不是 Node 应用。Node 只用于仓库工具。
+- 发布检查、JSON/frontmatter 解析、版本校验和打包使用 `.mjs`。
+- 只有在不需要结构化解析时，才用 shell 做薄命令编排。
+- 发布产物不要依赖 `zip` 这类系统专属工具。
+- 仓库没有 TypeScript 构建/测试路径前，不要引入 TypeScript。
