@@ -5,7 +5,6 @@
   "description": "极客杰尼智能体技能合集",
   "type": "module",
   "scripts": {
-    "assets:readme": "node scripts/render_readme_assets.mjs",
     "check:release": "node scripts/check_release.mjs",
     "pack:skills": "node scripts/package_skills.mjs"
   },

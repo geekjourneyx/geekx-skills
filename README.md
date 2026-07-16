@@ -1,12 +1,6 @@
-<div align="center">
-
-# GeekX Skills
-
-**给智能体使用的技能合集，把高频判断流程沉淀成可复用能力。**
-
-<img src="assets/banner.webp" alt="GeekX Skills：给智能体使用的技能合集" width="100%">
-
-</div>
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="GeekX Skills：把工程架构中的判断、约束与取舍沉淀为可执行的智能体技能">
+</p>
 
 ---
 
@@ -24,8 +18,6 @@ GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼�
 - `geekx-grilling`：一次追问一个关键决定，给出推荐项和备选理由，在行动前形成共同理解。
 
 ## 核心能力
-
-<img src="assets/features.webp" alt="GeekX Skills 核心能力：必要性门禁、噪音检测、复杂度税、承诺闸门" width="100%">
 
 `geekx-gate` 强制智能体输出一个裁决，而不是输出一套越来越大的计划：
 
