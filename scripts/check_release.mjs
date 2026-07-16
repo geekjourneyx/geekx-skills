@@ -17,11 +17,15 @@ function error(message) {
   fail.push(message);
 }
 
+const containsChinese = (text) => /[\u3400-\u4dbf\u4e00-\u9fff]/u.test(text);
+
 const pkg = await readJson('package.json');
 const lock = await readJson('package-lock.json');
 const changelog = await readText('CHANGELOG.md');
 const readme = await readText('README.md');
 const agents = await readText('AGENTS.md');
+
+if (!containsChinese(readme)) error('README.md must default to Chinese');
 
 if (!pkg.version) error('package.json missing version');
 if (lock.version !== pkg.version) {
@@ -102,7 +106,11 @@ for (const dir of skillDirs) {
   const description = frontmatter[1].match(/^description:\s*(.+)$/m)?.[1]?.trim();
   if (name !== dir) error(`${dir}/SKILL.md name must match directory name`);
   if (!description) error(`${dir}/SKILL.md missing description`);
+  if (description && !containsChinese(description)) error(`${dir}/SKILL.md description must default to Chinese`);
   if ((frontmatter[1].length ?? 0) > 1024) error(`${dir}/SKILL.md frontmatter exceeds 1024 characters`);
+
+  const body = skill.slice(frontmatter[0].length);
+  if (!containsChinese(body)) error(`${dir}/SKILL.md body must default to Chinese`);
 
   const evalsFile = path.join(full, 'evals', 'evals.json');
   if (!existsSync(evalsFile)) {
@@ -120,7 +128,7 @@ for (const dir of skillDirs) {
   }
 }
 
-if (!/^## .*可用 Skills/m.test(readme)) error('README.md missing 可用 Skills section');
+if (!/^## .*可用技能/m.test(readme)) error('README.md missing 可用技能 section');
 if (!/^## .*文档防漂移规则/m.test(agents)) error('AGENTS.md missing 文档防漂移规则 section');
 if (!/^## .*发布流程/m.test(agents)) error('AGENTS.md missing 发布流程 section');
 for (const dir of skillDirs) {

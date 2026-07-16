@@ -2,9 +2,9 @@
 
 # GeekX Skills
 
-**给 Agent 使用的 Skills 合集，把高频判断流程沉淀成可复用能力。**
+**给智能体使用的技能合集，把高频判断流程沉淀成可复用能力。**
 
-<img src="assets/banner.webp" alt="GeekX Skills：给 Agent 使用的 Skills 合集" width="100%">
+<img src="assets/banner.webp" alt="GeekX Skills：给智能体使用的技能合集" width="100%">
 
 </div>
 
@@ -12,54 +12,52 @@
 
 ## 这是什么
 
-GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的 Agent Skills 合集。
+GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的智能体技能合集。
 
-它不追求把所有想法都变成流程，而是把真实工作里反复出现、容易跑偏、需要稳定判断的环节沉淀成 Skill。当前重点是 `geekx-gate`：在需求、方案和架构设计开始前，先审判这件事到底该不该做。
+它不追求把所有想法都变成流程，而是把真实工作里反复出现、容易跑偏、需要稳定判断的环节沉淀成技能。
 
 ## 为什么需要它
 
-Agent 很擅长补全方案，也很容易把一个小需求扩写成完整系统。
+智能体很擅长补全方案，也很容易跳过关键决策，或把一个小需求扩写成完整系统。
 
-`geekx-gate` 的作用是反过来：先砍噪音、算复杂度税、确认非目标，再决定是否进入设计。它尤其适合拦住这些早熟决定：
+- `geekx-gate`：先砍噪音、算复杂度税、确认非目标，再决定是否进入设计。
+- `geekx-grilling`：一次追问一个关键决定，给出推荐项和备选理由，在行动前形成共同理解。
 
-- 现在就重写
-- 现在就换框架
-- 现在就做插件系统
-- 现在就引入工作流引擎
-- 现在就把一次性需求平台化
-
-## 你会得到什么
+## 核心能力
 
 <img src="assets/features.webp" alt="GeekX Skills 核心能力：必要性门禁、噪音检测、复杂度税、承诺闸门" width="100%">
 
-`geekx-gate` 会强制 Agent 输出一个裁决，而不是输出一套越来越大的计划。
+`geekx-gate` 强制智能体输出一个裁决，而不是输出一套越来越大的计划：
 
-它默认给出：
+- 保留、砍掉、延期、先验证或缩小范围
+- 跳过、`STOP`、`HOLD` 或 `PROBE`
+- 真实需求、噪音、非目标、复杂度税和唯一下一步
 
-- 裁决：保留、砍掉、延期、先验证、缩小范围
-- 承诺闸门：跳过、STOP、HOLD、PROBE
-- 真实需求
-- 噪音
-- 最小必要升级
-- 非目标
-- 复杂度税
-- 最终指令
+`geekx-grilling` 强制智能体把提问变成可决策的选项：
 
-## 可用 Skills
+- 一次只问一个高影响问题
+- 按依赖顺序关闭重大决策分支，不遗漏仍有效的并行决定
+- 推荐项排第一，并说明第一性原理和逆向理由
+- 每个备选项都说明适用条件、代价和风险
+- 有结构化提问工具时必须调用
+- 达成共同理解前不行动
 
-| Skill | 适合什么时候用 |
+## 可用技能
+
+| 技能 | 适合什么时候用 |
 |:---|:---|
-| `geekx-gate` | 审查需求、工程计划、架构提案、路线图或 Agent 输出是否过度设计；判断重写、框架、插件系统、工作流引擎等难撤回技术决定现在该不该做。 |
+| `geekx-gate` | 审查需求、工程计划、架构提案、路线图或智能体输出是否过度设计；判断重写、框架、插件系统、工作流引擎等难撤回技术决定现在该不该做。 |
+| `geekx-grilling` | 通过连续单题追问压力测试计划、决定或想法；要求每个问题提供推荐项、备选项和理由，并在行动前确认共同理解。 |
 
 ## 快速开始
 
-安装全部 Skills：
+安装全部技能：
 
 ```bash
 npx skills add geekjourneyx/geekx-skills --all
 ```
 
-查看可用 Skills：
+查看可用技能：
 
 ```bash
 npx skills add geekjourneyx/geekx-skills --list
@@ -69,6 +67,12 @@ npx skills add geekjourneyx/geekx-skills --list
 
 ```bash
 npx skills add geekjourneyx/geekx-skills --skill geekx-gate
+```
+
+只安装 `geekx-grilling`：
+
+```bash
+npx skills add geekjourneyx/geekx-skills --skill geekx-grilling
 ```
 
 ## 使用示例
@@ -93,14 +97,23 @@ npx skills add geekjourneyx/geekx-skills --skill geekx-gate
 开庭。使用 geekx-gate 多线程审判这个路线图，判断哪些该砍掉。
 ```
 
-## Skill 约束
+```text
+使用 geekx-grilling 逐项追问这个产品计划，每次只问一个关键问题。
+```
 
-每个 Skill 都遵守这些仓库级约束：
+```text
+Grill me。给出推荐项和备选项，并解释每个选择的代价。
+```
+
+## 技能约束
+
+每个技能都遵守这些仓库级约束：
 
 - 目录名必须以 `geekx-` 开头。
 - `SKILL.md` 的 `name` 必须与目录名一致。
-- 每个 Skill 必须包含 `evals/evals.json`。
-- README 只列用户需要知道的 Skills；维护规则以 `AGENTS.md` 为准。
+- 每个技能必须包含 `evals/evals.json`。
+- 用户可读内容默认使用中文；机器标识、命令和固定协议值保持原样。
+- README 只列用户需要知道的技能；维护规则以 `AGENTS.md` 为准。
 
 ## 作者
 
