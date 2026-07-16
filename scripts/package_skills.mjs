@@ -13,6 +13,7 @@ const include = [
   'LICENSE',
   'CHANGELOG.md',
   'AGENTS.md',
+  'VERSION',
 ];
 
 const crcTable = new Uint32Array(256);

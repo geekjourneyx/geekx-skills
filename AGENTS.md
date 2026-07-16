@@ -46,7 +46,7 @@
 - README 默认使用中文；品牌名、命令、链接和机器标识保持原样。
 - 删除泛泛而谈的宣传、填充语和自我解释。
 - 优先写可执行命令和硬约束，少写解释。
-- 版本号以 `package.json` 为唯一来源。
+- 版本号以 `package.json` 为唯一来源；根目录 `VERSION` 必须与其一致。
 - 每次发布都必须更新 `CHANGELOG.md`。
 - 发布流程只放在 `AGENTS.md`，README 只面向使用者。
 
@@ -56,6 +56,7 @@
 - README 不要写死当前版本号、发布步骤、标签命令或内部审查流程。
 - AGENTS 是维护者规则的唯一入口；不要把同一条发布规则复制到 README。
 - `CHANGELOG.md` 只记录真实历史变更，不为了“当前命名”改写旧版本事实。
+- `VERSION`、`package.json` 和 `package-lock.json` 的版本号必须一致。
 - 改名技能时，必须同时更新目录名、`SKILL.md` 的 `name`、`evals/evals.json` 的 `skill_name`、README 表格和变更日志。
 - 每次文档或技能改动后，至少运行 `npm run check:release`。
 
@@ -64,16 +65,17 @@
 每次发布前都必须执行以下流程：
 
 1. 更新 `package.json` 版本号。
-2. 用同一个版本号更新 `package-lock.json`。
-3. 在 `CHANGELOG.md` 添加匹配的 `## [x.y.z] - YYYY-MM-DD` 条目。
-4. 运行 `npm run check:release`。
-5. 运行 `npm run pack:skills`。
-6. 提交发布改动。
-7. 创建发布标签：`git tag -a vx.y.z -m "vx.y.z"`。
-8. 推送分支和标签：先 `git push origin <branch>`，再 `git push origin vx.y.z`。
-9. 确认 GitHub release workflow 已上传 zip 产物。
+2. 用同一个版本号更新根目录 `VERSION`。
+3. 用同一个版本号更新 `package-lock.json`。
+4. 在 `CHANGELOG.md` 添加匹配的 `## [x.y.z] - YYYY-MM-DD` 条目。
+5. 运行 `npm run check:release`。
+6. 运行 `npm run pack:skills`。
+7. 提交发布改动。
+8. 创建发布标签：`git tag -a vx.y.z -m "vx.y.z"`。
+9. 推送分支和标签：先 `git push origin <branch>`，再 `git push origin vx.y.z`。
+10. 确认 GitHub release workflow 已上传 zip 产物。
 
-如果 `npm run check:release` 失败，不要创建发布标签。
+如果 `VERSION`、`CHANGELOG.md` 或 `npm run check:release` 任一不匹配，不要创建或推送发布标签。
 
 ## 工具语言规则
 

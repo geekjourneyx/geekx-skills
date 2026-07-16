@@ -21,6 +21,9 @@ const containsChinese = (text) => /[\u3400-\u4dbf\u4e00-\u9fff]/u.test(text);
 
 const pkg = await readJson('package.json');
 const lock = await readJson('package-lock.json');
+const versionFile = existsSync(path.join(root, 'VERSION'))
+  ? (await readText('VERSION')).trim()
+  : undefined;
 const changelog = await readText('CHANGELOG.md');
 const readme = await readText('README.md');
 const agents = await readText('AGENTS.md');
@@ -28,6 +31,11 @@ const agents = await readText('AGENTS.md');
 if (!containsChinese(readme)) error('README.md must default to Chinese');
 
 if (!pkg.version) error('package.json missing version');
+if (!versionFile) {
+  error('VERSION is missing or empty');
+} else if (versionFile !== pkg.version) {
+  error(`VERSION ${versionFile} does not match package.json ${pkg.version}`);
+}
 if (lock.version !== pkg.version) {
   error(`package-lock.json version ${lock.version} does not match package.json ${pkg.version}`);
 }
