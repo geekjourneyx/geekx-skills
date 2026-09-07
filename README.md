@@ -1,31 +1,31 @@
 <p align="center">
-  <img src="./assets/readme/hero.svg" width="100%" alt="GeekX Skills：把工程架构中的判断、约束与取舍沉淀为可执行的智能体技能">
+  <img src="./assets/readme/hero.svg" width="100%" alt="GeekX Skills：把工程架构中的判断、约束与取舍沉淀为可执行的 Agent 技能">
 </p>
 
 ---
 
 ## 这是什么
 
-GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的智能体技能合集。
+GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼的 Agent 技能合集。
 
 它不追求把所有想法都变成流程，而是把真实工作里反复出现、容易跑偏、需要稳定判断的环节沉淀成技能。
 
 ## 为什么需要它
 
-智能体很擅长补全方案，也很容易跳过关键决策，或把一个小需求扩写成完整系统。
+Agent 很擅长补全方案，也很容易跳过关键决策，或把一个小需求扩写成完整系统。
 
 - `geekx-gate`：先砍噪音、算复杂度税、确认非目标，再决定是否进入设计。
 - `geekx-grilling`：一次追问一个关键决定，给出推荐项和备选理由，在行动前形成共同理解。
 
 ## 核心能力
 
-`geekx-gate` 强制智能体输出一个裁决，而不是输出一套越来越大的计划：
+`geekx-gate` 强制 Agent 输出一个裁决，而不是输出一套越来越大的计划：
 
 - 保留、砍掉、延期、先验证或缩小范围
 - 跳过、`STOP`、`HOLD` 或 `PROBE`
 - 真实需求、噪音、非目标、复杂度税和唯一下一步
 
-`geekx-grilling` 强制智能体把提问变成可决策的选项：
+`geekx-grilling` 强制 Agent 把提问变成可决策的选项：
 
 - 一次只问一个高影响问题
 - 按依赖顺序关闭重大决策分支，不遗漏仍有效的并行决定
@@ -39,7 +39,7 @@ GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼�
 | 技能 | 适合什么时候用 |
 |:---|:---|
 | `geekx-engineering` | 在真实代码库中实现功能、修复重大缺陷、重构或迁移，维护任务连续性并验证交付结果。 |
-| `geekx-gate` | 审查需求、工程计划、架构提案、路线图或智能体输出是否过度设计；判断重写、框架、插件系统、工作流引擎等难撤回技术决定现在该不该做。 |
+| `geekx-gate` | 审查需求、工程计划、架构提案、路线图或 Agent 输出是否过度设计；判断重写、框架、插件系统、工作流引擎等难撤回技术决定现在该不该做。 |
 | `geekx-grilling` | 通过连续单题追问压力测试计划、决定或想法；要求每个问题提供推荐项、备选项和理由，并在行动前确认共同理解。 |
 
 ## 快速开始
