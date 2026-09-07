@@ -114,11 +114,11 @@ for (const dir of skillDirs) {
   const description = frontmatter[1].match(/^description:\s*(.+)$/m)?.[1]?.trim();
   if (name !== dir) error(`${dir}/SKILL.md name must match directory name`);
   if (!description) error(`${dir}/SKILL.md missing description`);
-  if (description && !containsChinese(description)) error(`${dir}/SKILL.md description must default to Chinese`);
+  if (dir !== 'geekx-engineering' && description && !containsChinese(description)) error(`${dir}/SKILL.md description must default to Chinese`);
   if ((frontmatter[1].length ?? 0) > 1024) error(`${dir}/SKILL.md frontmatter exceeds 1024 characters`);
 
   const body = skill.slice(frontmatter[0].length);
-  if (!containsChinese(body)) error(`${dir}/SKILL.md body must default to Chinese`);
+  if (dir !== 'geekx-engineering' && !containsChinese(body)) error(`${dir}/SKILL.md body must default to Chinese`);
 
   const evalsFile = path.join(full, 'evals', 'evals.json');
   if (!existsSync(evalsFile)) {

@@ -38,6 +38,7 @@ GeekX Skills 是 [geekjourneyx](https://github.com/geekjourneyx) / 极客杰尼�
 
 | 技能 | 适合什么时候用 |
 |:---|:---|
+| `geekx-engineering` | 在真实代码库中实现功能、修复重大缺陷、重构或迁移，维护任务连续性并验证交付结果。 |
 | `geekx-gate` | 审查需求、工程计划、架构提案、路线图或智能体输出是否过度设计；判断重写、框架、插件系统、工作流引擎等难撤回技术决定现在该不该做。 |
 | `geekx-grilling` | 通过连续单题追问压力测试计划、决定或想法；要求每个问题提供推荐项、备选项和理由，并在行动前确认共同理解。 |
 
@@ -67,7 +68,18 @@ npx skills add geekjourneyx/geekx-skills --skill geekx-gate
 npx skills add geekjourneyx/geekx-skills --skill geekx-grilling
 ```
 
+只安装 `geekx-engineering`：
+
+```bash
+npx skills add geekjourneyx/geekx-skills --skill geekx-engineering
+```
+
 ## 使用示例
+
+```text
+使用 geekx-engineering 在现有代码库中实现这个需求，并完成相关验证。
+```
+
 
 ```text
 使用 geekx-gate 审查这个方案是否过度设计。
@@ -104,7 +116,7 @@ Grill me。给出推荐项和备选项，并解释每个选择的代价。
 - 目录名必须以 `geekx-` 开头。
 - `SKILL.md` 的 `name` 必须与目录名一致。
 - 每个技能必须包含 `evals/evals.json`。
-- 用户可读内容默认使用中文；机器标识、命令和固定协议值保持原样。
+- 用户可读内容默认使用中文；`geekx-engineering` 保留用户提供的英文定稿；机器标识、命令和固定协议值保持原样。
 - README 只列用户需要知道的技能；维护规则以 `AGENTS.md` 为准。
 
 ## 作者
