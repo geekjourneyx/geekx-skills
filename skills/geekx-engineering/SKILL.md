@@ -1,154 +1,154 @@
 ---
 name: geekx-engineering
-description: Implement and evolve software in a real codebase. Use when the user wants a feature built, a substantial bug fixed, code refactored or restructured, a migration completed, or a spec or issue carried through implementation.
+description: 在真实代码库中实现和演进软件。适用于用户希望构建功能、修复重大缺陷、重构或调整代码结构、完成迁移，或将规格说明或 Issue 落实为可用实现的场景。
 ---
 
-# Engineering
+# 工程师
 
-Take meaningful software changes through to a working, verified result.
+将实质性软件变更推进到可运行、经过验证的结果。
 
-Understand the relevant system, preserve task continuity, and adapt as reality changes. Choose the engineering approach yourself.
+理解相关系统，保持任务连续性，并随现实变化调整。自主选择工程方法。
 
-## Understand the system
+## 理解系统
 
-Before consequential changes, understand enough of the existing system to make sound decisions.
+在进行影响重大的变更前，充分理解现有系统，以便作出可靠决策。
 
-Focus on what matters to the requested behavior:
+重点关注与目标行为有关的内容：
 
-- behavior ownership;
-- interfaces and contracts;
-- sources of truth;
-- dependencies and data flow;
-- important invariants;
-- relevant tests and prior decisions.
+- 行为由哪个模块负责；
+- 接口与契约；
+- 事实来源；
+- 依赖关系与数据流；
+- 重要的不变量；
+- 相关测试与既有决策。
 
-Explore incrementally. Read more when uncertainty matters; do not map the whole repository by default.
+渐进探索。当不确定性影响决策时再深入阅读，不要默认梳理整个仓库。
 
-Follow repository conventions and established practices of the relevant language, framework, and domain when they materially improve correctness, maintainability, safety, or interoperability.
+当仓库约定以及相关语言、框架和领域的成熟实践能切实改善正确性、可维护性、安全性或互操作性时，遵循这些约定和实践。
 
-Explicit project constraints outrank generic best practices.
+明确的项目约束优先于通用最佳实践。
 
-Prefer simple, composable designs with clear interfaces and minimal special cases. Keep interfaces small without fragmenting cohesive behavior merely for smallness.
+优先采用简单、可组合、接口清晰且特殊情况尽量少的设计。保持接口精简，但不要仅为了缩小接口而拆散内聚的行为。
 
-## Isolate substantial work
+## 隔离实质性工作
 
-Keep substantial changes isolated from the repository's primary working state.
+将实质性变更与仓库的主要工作状态隔离。
 
-Prefer a dedicated branch unless the current workspace is already appropriately isolated or the repository or harness defines another workflow.
+优先使用专用分支，除非当前工作区已经适当隔离，或仓库、运行环境另有工作流规定。
 
-Do not create redundant isolation when one already exists.
+已有隔离时，不要重复创建。
 
-## Preserve the plan
+## 维护计划
 
-Before implementation, create or update a durable plan for substantial work unless an existing issue, spec, or project artifact already provides equivalent task state.
+在开始实质性工作的实现前，创建或更新持久化计划；如果已有 Issue、规格说明或项目文档提供了等效的任务状态，则复用它。
 
-Default location:
+默认位置：
 
 `docs/dev/YYYY-MM-DD-<topic>-plan.md`
 
-Use a short descriptive topic so the plan remains identifiable when multiple tasks exist on the same day.
+使用简短且有描述性的主题名，便于区分同一天的多个任务。
 
-Keep the plan outcome-oriented and current.
+让计划围绕结果组织，并保持更新。
 
-A useful plan may contain:
+一个有用的计划可以包含：
 
 ```markdown
-# Goal
+# 目标
 
-# Constraints
+# 约束
 
-# System
+# 系统
 
-# Plan
-- [x] Completed outcome
-- [ ] Next outcome
+# 计划
+- [x] 已完成的结果
+- [ ] 下一个结果
 
-# Decisions
+# 决策
 
-# Current State
+# 当前状态
 
-# Evidence
+# 证据
 
-# Open / Blocked
+# 待解决 / 阻塞
 
-# Next
+# 下一步
 
 ```
 
-Use only the sections that help.
+只使用有帮助的章节。
 
-Plan meaningful outcomes, not mechanical file edits or shell commands.
+规划有意义的结果，不要把计划写成机械的文件编辑或 shell 命令清单。
 
-Update the plan whenever reality changes.
+现实发生变化时，及时更新计划。
 
-**Plan is provisional. Current state is authoritative.**
+**计划是暂定的，当前状态才是依据。**
 
-Record decisions only when forgetting them would make later work slower, inconsistent, or incorrect.
+只记录那些一旦遗忘就会让后续工作变慢、产生不一致或出错的决策。
 
-Keep the file as working memory, not a transcript. Preserve only what another capable agent would need to resume correctly.
+将计划文件作为工作记忆，而非对话记录。只保留另一个有能力的智能体正确接手所需的信息。
 
-## Reduce decision cost
+## 降低决策成本
 
-Make routine engineering decisions yourself.
+自主作出常规工程决策。
 
-When a material decision genuinely depends on the user's preference, authorization, or risk acceptance, present the smallest useful set of options with a recommendation and meaningful tradeoffs.
+当重大决策确实取决于用户偏好、授权或风险接受程度时，提供最少但足够有用的选项，并给出推荐及有意义的取舍说明。
 
-If that decision would be substantially easier to make visually than in prose, generate one self-contained HTML decision page.
+如果可视化能让这项决策比纯文字说明更容易理解，生成一个自包含的 HTML 决策页面。
 
-Use the page to clarify the decision, not to decorate the plan.
+用页面澄清决策，不要用它装饰计划。
 
-Keep it focused on the decision at hand. Once the user decides, record the result in the durable plan.
+聚焦当前决策。用户决定后，将结果记录到持久化计划中。
 
-Do not introduce an approval gate when no material user decision exists.
+没有需要用户作出的重大决策时，不要引入审批关卡。
 
-## Coordinate multiple agents through durable state
+## 通过持久化状态协调多个智能体
 
-Additional agents are optional.
+是否使用额外智能体是可选的。
 
-Use them when parallelism, specialization, independent exploration, or independent review creates real value.
+当并行处理、专业分工、独立探索或独立审查能创造实际价值时，再使用它们。
 
-Do not create agents merely to simulate software-team roles.
+不要仅为了模拟软件团队角色而创建智能体。
 
-When multiple agents participate, use the current durable plan as shared context.
+多个智能体参与时，以当前持久化计划作为共享上下文。
 
-Prefer one coordinator to own updates to shared state.
+优先由一个协调者负责更新共享状态。
 
-Workers return findings, changes, or evidence. The coordinator integrates those results and keeps the plan consistent with repository reality.
+工作者返回发现、变更或证据。协调者整合这些结果，并让计划与仓库实际状态保持一致。
 
-Do not let stale agent context override newer code, decisions, or evidence.
+不要让过期的智能体上下文覆盖更新的代码、决策或证据。
 
-## Follow reality
+## 以现实为准
 
-Repository state, runtime behavior, test results, and observed constraints outrank assumptions and earlier plans.
+仓库状态、运行时行为、测试结果和已观察到的约束，优先于假设和早先的计划。
 
-When evidence contradicts the current approach, update the understanding, plan, and implementation accordingly.
+当证据与当前方法矛盾时，相应更新理解、计划和实现。
 
-Do not preserve a plan simply because it was written earlier.
+不要仅因为计划写得早，就坚持保留它。
 
-## Verify the result
+## 验证结果
 
-Important completion claims require fresh evidence appropriate to the change.
+重要的完成声明需要与变更相适应的最新证据。
 
-Choose verification that matches the actual behavior and risk. It may include tests, typechecking, builds, runtime checks, integration or end-to-end behavior, browser or API checks, benchmarks, resulting-state inspection, or final diff review.
+选择与实际行为和风险匹配的验证方式。可以包括测试、类型检查、构建、运行时检查、集成或端到端行为验证、浏览器或 API 检查、基准测试、最终状态检查或最终差异审查。
 
-Before declaring substantial work complete, confirm that:
+在宣布实质性工作完成前，确认：
 
-- the requested outcome exists;
-- important constraints still hold;
-- relevant existing behavior has not regressed;
-- known failures or unverified areas are explicit.
+- 请求的结果已经实现；
+- 重要约束仍然成立；
+- 相关既有行为没有退化；
+- 已知失败或未验证的部分已明确说明。
 
-Do not treat confidence, reasoning, or another agent's report as proof when the result can reasonably be checked directly.
+如果结果可以合理地直接检查，就不要将信心、推理或另一个智能体的报告当作证明。
 
-## Finish cleanly
+## 妥善收尾
 
-If work continues later, leave the durable plan accurate enough for another capable agent to resume without reconstructing the conversation.
+如果工作将在之后继续，留下足够准确的持久化计划，让另一个有能力的智能体无需重建对话即可接手。
 
-If the task is complete, keep the plan only when it retains useful project knowledge; otherwise remove it.
+如果任务已完成，仅在计划仍保留有用项目知识时保留它，否则删除。
 
-Report concisely:
+简洁报告：
 
-- what changed;
-- important decisions;
-- verification performed;
-- remaining risks or follow-ups.
+- 做了哪些变更；
+- 重要决策；
+- 执行了哪些验证；
+- 剩余风险或后续事项。
