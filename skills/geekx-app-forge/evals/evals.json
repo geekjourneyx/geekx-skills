@@ -1,0 +1,65 @@
+{
+  "skill_name": "geekx-app-forge",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有个想法：做一个 iPhone App，能把我每天看到的好文章、原则和心智模型都收进去。直接给我完整 PRD 和开发计划。",
+      "expected_output": "不能直接生成 PRD。必须先进入需求探索，调用/遵循 geekx-grilling 单题流程，并明确在进入 Spec 前至少需要 10 轮有效澄清。应优先追问真实使用场景、当前替代方案和不做后果，同时提醒收藏更多内容可能与真正目标冲突。不能开始写代码或开发计划。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我要做一个 AI 旅游 App，功能要有路线、地图、相册、社交、AI 导游、订酒店、订餐厅、积分、社区、会员。反正 AI 编程很快，全部先做。",
+      "expected_output": "必须识别明显范围膨胀和 AI Coding 导致的低估复杂度。不能接受全部 P0。应进入 grilling/reality check，一次只问一个最上游问题，并持续做删除测试；最终允许 PROBE/SHRINK/STOP，而不是保证一定产出 App。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我自己每个月会遇到一次这个问题，做成 App 应该很好玩。没有竞品调研，也不知道别人需不需要。你先帮我把商业订阅、账号、云同步设计上。",
+      "expected_output": "必须先质疑频率与产品形态，检查脚本、快捷指令、文档或现有工具是否足够。商业化只能在 dogfood 价值成立后评估，不能因为未来可能收费就在 P0 加账号、订阅和云同步。证据不足时应选择 PROBE 或 SHRINK。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "我们已经确认要做 iOS App。请设计成很高级的 Apple 风：玻璃卡片、渐变、阴影、很多动效，大圆角越多越好。",
+      "expected_output": "必须区分 Apple-native 与装饰性 Apple-like。默认采用系统组件、semantic colors、SF、信息层级、留白和可访问性，拒绝无功能理由的玻璃、渐变、阴影、卡片墙和动画。需要继续遵守已确认的产品目标而不是迎合视觉堆料。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "需求聊完了。你调研出了 150 条固定数据和完整分类。现在写计划吧，JSON 让 ZCode 自己重新上网整理就好。",
+      "expected_output": "必须拒绝把已经完成的研究重新甩给 Coding Agent。进入 handoff 前应把静态数据整理为可直接 import 的 JSON/manifest/source mapping，并在 Spec/Plan 中定义 schema 和完整性测试。交付目标是 Agent 解压即可开发。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "已经聊了 10 轮，所以不管还有没有关键问题都开始写 Spec 吧。",
+      "expected_output": "不能把 10 轮当结束条件。10 轮只是最小门槛；若仍有会改变目标、范围、成功标准、不可逆承诺或技术可行性的重大未决项，必须继续单题澄清。只有共同理解确认后才能进入 Spec。",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "核心能力依赖一个最新 iOS API，我记得苹果应该支持。先按支持来写完整计划，后面再验证。",
+      "expected_output": "必须先查官方一手文档和目标系统版本能力；核心技术假设未验证时先做 feasibility spike/PROBE，不应先冻结完整产品计划。需要区分模拟器与真机限制、签名/权限/审核等边界。",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "我已经批准产品 Spec。请继续给 Coding Agent 准备可直接开发的交付包。",
+      "expected_output": "应转入 superpowers:writing-plans 生成实施计划，然后补齐 AGENTS.md、App identity、Icon 规范、固定文案、必要静态数据与 manifest/source mapping，进行 Spec/Plan 一致性和过度设计审查，最终生成 developer-handoff ZIP。不能重新发散产品范围。",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "我想做一个产品，但如果调研后发现根本没必要做，也请你一定给我一个完整 App 方案，别打击积极性。",
+      "expected_output": "不能承诺一定产出 App。必须保留 STOP/PROBE/SHRINK 出口；如果低频、替代方案足够、证据不足或维护成本明显高于价值，应明确建议不做、先验证、缩小或转向，并给最低成本验证行动。",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "这个产品先给我自己用，但我以后可能商业化。请你现在就按企业 SaaS 的账户、权限、团队、计费、多租户来设计。",
+      "expected_output": "必须坚持先自用再商业化，商业化只保留路径和证据，不自动污染 P0。应将账户、权限、计费、多租户等标记为延期，除非当前核心任务真实需要。必须问删掉这些后产品是否仍然解决核心问题。",
+      "files": []
+    }
+  ]
+}
