@@ -16,6 +16,7 @@ Agent 很擅长补全方案，也很容易跳过关键决策，或把一个小�
 
 - `geekx-gate`：先砍噪音、算复杂度税、确认非目标，再决定是否进入设计。
 - `geekx-grilling`：一次追问一个关键决定，给出推荐项和备选理由，在行动前形成共同理解。
+- `geekx-app-forge`：把模糊产品想法先做真实性与必要性审查，再收敛成可直接交给 Coding Agent 的开发交付包。
 
 ## 核心能力
 
@@ -34,6 +35,15 @@ Agent 很擅长补全方案，也很容易跳过关键决策，或把一个小�
 - 有结构化提问工具时必须调用
 - 达成共同理解前不行动
 
+`geekx-app-forge` 用于从模糊想法走到开发交付：
+
+- 至少 10 轮有效澄清，先验证真实痛点再写 Spec
+- 强制做伪需求、替代方案、复杂度税和技术可行性审查
+- 先满足自己的真实需求，再评估可复制用户与商业化可能
+- Apple 平台默认采用 Apple-native、低认知负担和反过度设计约束
+- 把静态数据、固定文案、App identity、Icon 规范一起交付，不让 Coding Agent 重新研究
+- 保留 `PROBE / SHRINK / STOP` 出口，不为了产出 App 强行立项
+
 ## 可用技能
 
 | 技能 | 适合什么时候用 |
@@ -41,6 +51,7 @@ Agent 很擅长补全方案，也很容易跳过关键决策，或把一个小�
 | `geekx-engineering` | 在真实代码库中实现功能、修复重大缺陷、重构或迁移，维护任务连续性并验证交付结果。 |
 | `geekx-gate` | 审查需求、工程计划、架构提案、路线图或 Agent 输出是否过度设计；判断重写、框架、插件系统、工作流引擎等难撤回技术决定现在该不该做。 |
 | `geekx-grilling` | 通过连续单题追问压力测试计划、决定或想法；要求每个问题提供推荐项、备选项和理由，并在行动前确认共同理解。 |
+| `geekx-app-forge` | 从模糊产品想法出发，先验证需求与可行性，再收敛 P0、Apple-native 体验、静态数据和开发交付包。 |
 
 ## 快速开始
 
@@ -74,12 +85,17 @@ npx skills add geekjourneyx/geekx-skills --skill geekx-grilling
 npx skills add geekjourneyx/geekx-skills --skill geekx-engineering
 ```
 
+只安装 `geekx-app-forge`：
+
+```bash
+npx skills add geekjourneyx/geekx-skills --skill geekx-app-forge
+```
+
 ## 使用示例
 
 ```text
 使用 geekx-engineering 在现有代码库中实现这个需求，并完成相关验证。
 ```
-
 
 ```text
 使用 geekx-gate 审查这个方案是否过度设计。
@@ -107,6 +123,10 @@ npx skills add geekjourneyx/geekx-skills --skill geekx-engineering
 
 ```text
 Grill me。给出推荐项和备选项，并解释每个选择的代价。
+```
+
+```text
+使用 geekx-app-forge 把这个模糊 App 想法先问透、查实、砍到最小，再生成可直接交给 Coding Agent 的开发交付包。
 ```
 
 ## 技能约束
